@@ -9,31 +9,39 @@ const nodeTypes = {
 
 const Sidebar2 = ({ addNode, nodes }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [isReadmeOpen, setIsReadmeOpen] = useState(false); 
+  const [isReadmeOpen, setIsReadmeOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
-  };
-
+  const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
+  const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
   const scrollHalfPageDown = () => {
     window.scrollBy({
       top: window.innerHeight / 2,
       behavior: "smooth",
     });
   };
-
-  const toggleReadme = () => {
-    setIsReadmeOpen(!isReadmeOpen); 
-  };
+  const toggleReadme = () => setIsReadmeOpen(!isReadmeOpen);
 
   return (
-    <div className="min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-gray-50 text-gray-800">
-      <div className="fixed flex flex-col top-0 left-0 w-64 bg-white h-full border-r">
-        <div className="flex items-center justify-center h-14 border-b">
-          <div className="font-bold text-gray-600 text-xl">WorkFlow Management</div>
+    <div className="min-h-screen flex flex-col bg-gray-50 text-gray-800">
+      {/* Sidebar for larger screens */}
+      <div
+        className={`lg:fixed lg:flex lg:flex-col top-0 left-0 w-64 bg-white h-full border-r ${
+          isSidebarOpen ? "block" : "hidden"
+        }`}
+      >
+        <div className="flex items-center justify-between h-16 border-b px-4">
+          <div
+            className={`font-bold text-gray-600  text-xl ${
+              isSidebarOpen ? "pl-7 text-sm" : ""
+            }`}
+          >
+            WorkFlow Management
+          </div>
         </div>
+
         <div className="overflow-y-auto overflow-x-hidden flex-grow">
-          <ul className="flex flex-col pb-4 space-y-1">
+          <ul className="flex flex-col  space-y-1">
             {/* Create Node */}
             <li className="py-2 bg-slate-100">
               <div
@@ -114,52 +122,50 @@ const Sidebar2 = ({ addNode, nodes }) => {
             </li>
           </ul>
         </div>
-        
         {/* ReadMe Button */}
-        <div className="flex items-center justify-center h-14 border-t">
-          
-        <button
-          className="absolute bottom-4 mx-auto px-2 py-1 bg-sky-600 text-white tracking-tighter text-sm rounded-xl"
-          onClick={toggleReadme}
+        <div className="flex items-center justify-center h-14 border-t bg-gray-50">
+          <button
+            className="absolute bottom-4 mx-auto px-2 py-1 bg-sky-600 text-white tracking-tighter text-sm rounded-xl"
+            onClick={toggleReadme}
           >
-          ReadMe before you start
+            ReadMe before you start
+          </button>
+        </div>
+      </div>
+
+      {/* Hamburger Button for smaller screens */}
+      <div className="lg:hidden p-4 fixed top-0 left-0 z-50 ">
+        <button onClick={toggleSidebar} className="text-gray-800">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            className="w-5 h-5"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            ></path>
+          </svg>
         </button>
-        
-          </div>
       </div>
 
       {/* README Section */}
       {isReadmeOpen && (
         <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white p-6 w-96 rounded-md shadow-lg">
+          <div className="bg-white p-6 w-2/4 rounded-md shadow-lg">
             <h2 className="text-xl font-bold mb-4">README</h2>
             <p>
-            <b>
-                1: To add a node:
-              </b>
+              <b>1: To add a node:</b> Click on the type of node you want to
+              add.
               <br />
-              -Just click on the type of node you want to add to the canvas.
+              <b>2: To connect nodes:</b> Click on the circle at the bottom of a
+              node and drag it to the top of another.
               <br />
-              <b>
-                2: To connect nodes:
-              </b>
-              <br />
-              -Click on the circle on the bottom circle of the node and drag it to the top circle of the node you want to connect it to.
-              <br />
-              <b>
-                3: To edit a node:
-              </b>
-              <br />
-              - click on the node to edit the properties, you can also delete nodes from edit section. 
-              <br />
-              <b>
-                4: Analytics section:
-              </b>
-              - Click on the "Go to Analytics" button to see the analytics of the workflow.
-              <b><br />
-                5: To get analytics: **Important**
-              </b>
-              - You cant get analytics until you have atleast 1 node on the canvas, and add execution time to see the charts.
+              <b>3: To edit a node:</b> Click the node to edit its properties.
             </p>
             <button
               className="mt-4 py-1 px-4 bg-red-800 text-white font-sm rounded-2xl"
