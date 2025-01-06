@@ -147,19 +147,19 @@ const FlowExample = ({ onAddNode }) => {
           </div>
           <div className="flex justify-between">
             <button
-              className="px-3 py-1 bg-green-500 text-white rounded"
+              className="px-2 py-1 bg-green-500 text-white rounded-xl"
               onClick={handleSave}
             >
-              Save
+              A
             </button>
             <button
-              className="px-3 py-1 bg-gray-500 text-white rounded"
+              className="px-2 py-1 bg-gray-500 text-white rounded-xl"
               onClick={handleCancel}
             >
               Cancel
             </button>
             <button
-              className="px-3 py-1 bg-red-500 text-white rounded"
+              className="px-2 py-1 bg-red-500 text-white rounded-xl"
               onClick={() => deleteNode(id)}
             >
               Delete
@@ -245,7 +245,7 @@ const FlowExample = ({ onAddNode }) => {
 
   return (
     <div>
-      <div className=" flex flex-row bg-slate-300 rounded-lg fixed z-50 top-3 shadow-gray-500 text-sm">
+      <div className=" flex flex-row bg-slate-300 rounded-lg fixed z-50 top-3 right-2 shadow-gray-500 text-sm">
         <button
           onClick={saveWorkflow}
           className=" shadow-sm  px-2 py-1"
