@@ -1,10 +1,10 @@
-// import React, { createContext, useContext, useState, useCallback } from "react";
+import React, { createContext, useContext, useState, useCallback } from "react";
 
 
-// const NodesContext = createContext();
+const NodesContext = createContext();
 
-// export const NodesProvider = ({ children }) => {
+export const NodesProvider = ({ children }) => {
   
-// };
+};
 
-// export const useNodes = () => useContext(NodesContext);
+export const useNodes = () => useContext(NodesContext);
