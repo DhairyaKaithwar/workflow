@@ -23,7 +23,7 @@ function App() {
       </div>
 
       {/* Canvas */}
-      <div className="flex-grow">
+      <div className="flex-grow p-4 sm:p-2">
         <FlowExample onAddNode={handleSetAddNode} />
       </div>
     </div>
